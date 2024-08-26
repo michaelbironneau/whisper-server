@@ -10,7 +10,6 @@ model = WhisperModel("./model", device="cpu", compute_type="int8")
 
 @app.post("/segment")
 async def process_sample(file: Annotated[UploadFile, File()]):
-    #filename = file.filename 
     contents = file.file
     segments, _ = model.transcribe(contents)
     ret = ""
