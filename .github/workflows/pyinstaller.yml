@@ -1,0 +1,23 @@
+name: Pyinstaller build 
+
+on: [workflow_dispatch]
+
+jobs:
+  pyinstaller-build:
+    strategy:
+        fail-fast: false
+        matrix:
+          build: [
+            {os: macos-latest},
+            {os: windows-latest}
+          ]
+    runs-on: ${{ matrix.build.os }}
+    steps:
+      - name: Create Executable
+        uses: sayyid5416/pyinstaller@v1
+        with:
+          python_ver: '3.10'
+          spec: 'main.spec'
+          requirements: 'requirements.txt'
+          upload_exe_with_name: 'whisper-server'
+          options: --onefile, --name "Whisper Server", 
