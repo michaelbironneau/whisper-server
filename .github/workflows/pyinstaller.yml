@@ -10,7 +10,7 @@ jobs:
           build: [
             {os: macos-latest, name: 'whisper-server-macos-arm'},
             {os: macos-13, name: 'whisper-server-macos-x64'},
-            {os: windows-latest, name: 'whisper-server.exe'}
+            {os: windows-latest, name: 'whisper-server-win'}
           ]
     runs-on: ${{ matrix.build.os }}
     steps:
