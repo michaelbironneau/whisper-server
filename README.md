@@ -5,6 +5,10 @@ It's cross-platform and has been tested on Windows and (soon) MacOS.
 
 This is just a thin wrapper around some Python scripts so if this doesn't quite fit your use case please fork the repo.
 
+# Dev
+
+Install the dependencies with `pip install -r requirements.txt` then run `python main.py`. 
+
 # Building
 
 Install the dependencies with `pip install -r requirements.txt`, then run `pyinstaller main.py`.
