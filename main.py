@@ -14,7 +14,11 @@ async def process_sample(file: Annotated[UploadFile, File()]):
     contents = file.file
     segments, _ = model.transcribe(contents)
     ret = ""
+
     for segment in segments:
+        if segment.no_speech_prob > 0.5:
+            print(f"Ignoring segment {segment.text}\n")
+            continue 
         ret += segment.text + " "
     return {"text": ret.strip()}
 
