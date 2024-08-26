@@ -8,8 +8,9 @@ jobs:
         fail-fast: false
         matrix:
           build: [
-            {os: macos-latest},
-            {os: windows-latest}
+            {os: macos-14-large, name: 'whisper-server-macos-x64'},
+            {os: macos-14, name: 'whisper-server-macos-arm'},
+            {os: windows-latest, name: 'whisper-server.exe'}
           ]
     runs-on: ${{ matrix.build.os }}
     steps:
@@ -19,5 +20,5 @@ jobs:
           python_ver: '3.10'
           spec: 'main.spec'
           requirements: 'requirements.txt'
-          upload_exe_with_name: 'whisper-server'
+          upload_exe_with_name: ${{ matrix.build.name }}
           options: --onefile, --name "Whisper Server", 
