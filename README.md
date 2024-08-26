@@ -8,3 +8,13 @@ This is just a thin wrapper around some Python scripts so if this doesn't quite 
 # Building
 
 Install the dependencies with `pip install -r requirements.txt`, then run `pyinstaller main.py`.
+
+# How to
+
+Make an HTTP `POST` request to `http://localhost:8000/segment` with multipart/form-data with a field named `file` containing the audio file you wish to transcribe. I've tested this with WAV files made of int16 PCM buffers, but it should work with any audio format supported by Faster Whisper.
+
+The response is a JSON object with a `text` field containing the transcription.
+
+# License
+
+This code is licensed under the MIT license (see License.md).
