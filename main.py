@@ -11,6 +11,7 @@ parser = argparse.ArgumentParser(description="Whisper server")
 parser.add_argument('--port', type=int, default=8000, help="Port to run the server on")
 parser.add_argument('--model_dir', type=str, default="./model", help="Path to the model directory")
 parser.add_argument('--device', type=str, default="cpu", help="Device to run the model on (e.g., 'cpu', 'cuda')")
+parser.add_argument('--threshold', type=float, default=0.5, help="No-speech threshold above which transcription won't be returned")
 
 args = parser.parse_args()
 
@@ -25,7 +26,7 @@ async def process_sample(file: Annotated[UploadFile, File()]):
     ret = ""
 
     for segment in segments:
-        if segment.no_speech_prob > 0.5:
+        if segment.no_speech_prob > args.threshold:
             print(f"Ignoring segment {segment.text}\n")
             continue 
         ret += segment.text + " "
